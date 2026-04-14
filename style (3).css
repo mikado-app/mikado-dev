@@ -1,0 +1,328 @@
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181c23;
+    --border: #252930;
+    --accent: #c8a84b;
+    --accent2: #4b7fc8;
+    --text: #e8eaf0;
+    --muted: #e8eaf0;
+    --red: #e05252;
+    --green: #4caf7d;
+    --blue: #5b9cf6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .logo span { color: var(--text); }
+  .date-badge {
+    font-size: 12px;
+    color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .load-btn {
+    background: var(--accent);
+    color: #0a0c10;
+    border: none;
+    padding: 8px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .load-btn:hover { opacity: 0.85; }
+  .load-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* MAIN */
+  main { padding: 2rem; max-width: 1600px; margin: 0 auto; }
+
+  /* STATUS BAR */
+  #status-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* MATCH CARDS */
+  .match-section {
+    margin-bottom: 3rem;
+    animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .match-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  /* LOGOS */
+  .match-vs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .match-team-block {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .team-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.4));
+  }
+  .match-team-abbrev {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .match-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .match-at { display: none; }
+  .match-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .match-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(200,168,75,0.1);
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .match-venue {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* TEAM TABS */
+  .team-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .team-tab {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .team-tab.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(200,168,75,0.08);
+  }
+  .team-tab:hover:not(.active) { border-color: var(--border); color: var(--text); }
+
+  /* TABLE */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    min-width: 900px;
+  }
+  thead {
+    background: var(--surface2);
+    position: sticky;
+    top: 0;
+  }
+  th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+  }
+  th:hover { color: var(--accent); }
+  th:first-child, th:nth-child(2) { text-align: left; }
+  th.sorted { color: var(--accent); }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(37,41,48,0.6);
+    text-align: center;
+    color: var(--text);
+    font-weight: 400;
+  }
+  td:first-child { text-align: left; font-weight: 500; }
+  td:nth-child(2) { text-align: left; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* POSITION BADGE */
+  .pos-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .pos-C  { background: rgba(91,156,246,0.15); color: #5b9cf6; }
+  .pos-LW { background: rgba(76,175,125,0.15); color: #4caf7d; }
+  .pos-RW { background: rgba(76,175,125,0.15); color: #4caf7d; }
+  .pos-D  { background: rgba(200,168,75,0.15); color: #c8a84b; }
+  .pos-G  { background: rgba(224,82,82,0.15); color: #e05252; }
+
+  /* VALUE CELLS */
+  .val-high { color: var(--green); font-weight: 500; }
+  .val-mid  { color: var(--text); }
+  .val-low  { color: var(--muted); }
+  .val-zero { color: #3a3f4a; }
+
+  /* RANK */
+  .rank { color: var(--muted); font-size: 11px; width: 28px; }
+
+  /* H2H CELL */
+  .h2h { font-size: 11px; white-space: nowrap; }
+
+  /* B2B BADGE */
+  .b2b-yes { color: var(--accent); font-weight: 600; }
+
+  /* EXPORT */
+  .export-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+    justify-content: flex-end;
+  }
+  .btn-sm {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* EMPTY / ERROR */
+  .empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+  }
+  .empty .big { font-size: 48px; font-weight: 900; color: var(--border); display: block; margin-bottom: 0.5rem; }
+
+  /* NOTE */
+  .note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    padding-left: 2px;
+    font-style: italic;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 1.5rem;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* LOADING SKELETON */
+  .skeleton-row td { background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%); background-size: 400% 100%; animation: shimmer 1.2s infinite; border-radius: 3px; color: transparent; }
+  @keyframes shimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
